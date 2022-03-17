@@ -1,8 +1,9 @@
 body {
-    background-color: rgb(201, 201, 201);
+    background-color: grey;
 }
 
-.myDiv {
+div {
     margin-top: 35px;
     text-align: center;
+    color: white;
 }

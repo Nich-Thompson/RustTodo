@@ -21,7 +21,7 @@ fn app() -> Html {
     };
 
     html! {
-        <div class="myDiv">
+        <div>
             <button {onclick}>{ "+1" }</button>
             <p>{ state.value }</p>
         </div>
@@ -29,6 +29,5 @@ fn app() -> Html {
 }
 
 fn main() {
-    // println!("Hello, world!");
     yew::start_app::<App>();
 }
