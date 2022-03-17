@@ -1,55 +1,33 @@
-#[macro_use]
-extern crate yew;
-
-use yew::html::*;
+use yew::prelude::*;
 
 struct Model {
-    input: String,
-    todos: Vec<String>,
+    value: i64
 }
 
-enum Msg {
-    Add,
-    Update(String),
-    Remove(usize),
-    RemoveAll,
-    Nothing
-}
+#[function_component(App)]
+fn app() -> Html {
+    let state = use_state(|| Model {
+        value: 0
+    });
 
-fn update(_: &mut Context<Msg>, model: &mut Model, msg: Msg) {
-    match msg {
-        Msg::Add => {}
-        Msg::Update(s) => {}
-        Msg::Remove(i) => {}
-        Msg::RemoveAll => {}
-        Msg::Nothing => {}
-    }
-}
+    let onclick = {
+        let state = state.clone();
 
-fn view(model: &Model) -> Html<Msg> {
+        Callback::from(move |_| {
+            state.set(Model {
+                value: state.value + 1
+            })
+        })
+    };
+
     html! {
         <div>
-            <div>
-                <h1>{"Todo App"}</h1>
-                <input />
-            </div>
-            <div>
-                <button>{"Delete all todos"}</button>
-            </div>
-            <div>
-                <ul>
-                </ul>
-            </div>
+            <button {onclick}>{ "+1" }</button>
+            <p>{ state.value }</p>
         </div>
     }
 }
 
 fn main() {
-    println!("Hello, world!");
-    let model = Model {
-        todos: vec![],
-        input: "".to_string(),
-    };
-    program(model, update, view);
+    yew::start_app::<App>();
 }
-
