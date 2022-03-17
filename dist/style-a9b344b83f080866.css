@@ -7,3 +7,9 @@ div {
     text-align: center;
     color: white;
 }
+
+.item-list {
+    line-height: 1.8;
+    margin-left: -40px;
+    list-style-position: inside;
+}
