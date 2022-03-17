@@ -19,30 +19,33 @@ fn app() -> Html {
     // };
 
     let state = use_state(|| Todo {
-        content: Vec::new()
+        // content: Vec::new()
+        content: vec!["wow1".to_owned(), "wow2".to_owned()]
     });
 
-    let state2 = state.clone();
-    let mut old_content = state2.content.clone();
-    old_content.push("wow1".to_owned());
-    old_content.push("wow2".to_owned());
-    old_content.push("wow3".to_owned());
-    
+    // let state2 = state.clone(); // this dont work
+    // let mut old_content = state2.content.clone();
+    // old_content.push("wow1".to_owned());
+    // old_content.push("wow2".to_owned());
+    // old_content.push("wow3".to_owned());
+
     let onclick = {
         // todo.content.push("wow".to_owned());
         // todo.save();
         // let mut queue: () = state.content.as_mut().unwrap();
 
         let state = state.clone();
-        // let mut oldContent = state.content;
-        // oldContent.push("wow".to_owned());
+        let mut oldContent = state.content.clone();
+        oldContent.push("wow".to_owned());
 
         Callback::from(move |_| {
             state.set(Todo {
-                content: state.content.clone()
+                content: oldContent.clone()
             })
         })
     };
+
+    let items = (1..=10).collect::<Vec<_>>();
 
     html! {
         <div>
@@ -50,6 +53,9 @@ fn app() -> Html {
             // <span>{ todo.map[""|] }</span>
             <ul class="item-list">
                 { state.content.iter().collect::<Html>() }
+            </ul>
+            <ul class="item-list">
+                { items.iter().collect::<Html>() }
             </ul>
         </div>
     }
