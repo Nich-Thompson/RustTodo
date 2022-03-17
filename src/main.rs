@@ -8,29 +8,29 @@ struct Model {
     value: i64
 }
 
-#[function_component(App)]
-fn app() -> Html {
-    let state = use_state(|| Model {
-        value: 0
-    });
+// #[function_component(App)]
+// fn app() -> Html {
+//     let state = use_state(|| Model {
+//         value: 0
+//     });
 
-    let onclick = {
-        let state = state.clone();
+//     let onclick = {
+//         let state = state.clone();
 
-        Callback::from(move |_| {
-            state.set(Model {
-                value: state.value + 1
-            })
-        })
-    };
+//         Callback::from(move |_| {
+//             state.set(Model {
+//                 value: state.value + 1
+//             })
+//         })
+//     };
 
-    html! {
-        <div class="myDiv">
-            <button {onclick}>{ "+1" }</button>
-            <p>{ state.value }</p>
-        </div>
-    }
-}
+//     html! {
+//         <div class="myDiv">
+//             <button {onclick}>{ "+1" }</button>
+//             <p>{ state.value }</p>
+//         </div>
+//     }
+// }
 
 // fn main() {
 //     // println!("Hello, world!");
@@ -41,7 +41,8 @@ fn app() -> Html {
 async fn main() -> Result<(), Box<dyn Error>> {
    // Load the MongoDB connection string from an environment variable:
    let client_uri =
-      env::var("MONGODB_URI").expect("You must set the MONGODB_URI environment var!");
+    "mongodb+srv://root:root@rustcluster.wujlv.mongodb.net/test?retryWrites=true&w=majority";
+    //   env::var("MONGODB_URI").expect("You must set the MONGODB_URI environment var!"); // this does not work for some reason
    // A Client is needed to connect to MongoDB:
    // An extra line of code to work around a DNS issue on Windows:
    let options =
