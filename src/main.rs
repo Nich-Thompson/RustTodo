@@ -22,15 +22,16 @@ fn app() -> Html {
         content: Vec::new()
     });
 
+    let state2 = state.clone();
+    let mut old_content = state2.content.clone();
+    old_content.push("wow1".to_owned());
+    old_content.push("wow2".to_owned());
+    old_content.push("wow3".to_owned());
+    
     let onclick = {
         // todo.content.push("wow".to_owned());
         // todo.save();
         // let mut queue: () = state.content.as_mut().unwrap();
-        let state2 = state.clone();
-        let mut oldContent = state2.content;
-        oldContent.push("wow1".to_owned());
-        oldContent.push("wow2".to_owned());
-        oldContent.push("wow3".to_owned());
 
         let state = state.clone();
         // let mut oldContent = state.content;
@@ -38,7 +39,7 @@ fn app() -> Html {
 
         Callback::from(move |_| {
             state.set(Todo {
-                content: Vec::new()
+                content: state.content.clone()
             })
         })
     };
